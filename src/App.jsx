@@ -10,6 +10,8 @@ import About from './pages/About'
 import FAQ from './pages/FAQ'
 import Contact from './pages/Contact'
 import CheckoutModal from './components/CheckoutModal'
+import SmoothScroll from './components/SmoothScroll'
+import CustomCursor from './components/CustomCursor'
 
 function App() {
   const [view, setView] = useState({ id: 'home', params: null })
@@ -46,28 +48,35 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar onNavigate={navigateHandler} currentView={view.id} />
-      
-      <main>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={view.id + (view.params || '')}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-          >
-            {renderView()}
-          </motion.div>
+    <SmoothScroll>
+      <CustomCursor />
+      <div className="min-h-screen bg-white">
+        <Navbar onNavigate={navigateHandler} currentView={view.id} />
+        
+        <main>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={view.id + (view.params || '')}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            >
+              {renderView()}
+            </motion.div>
+          </AnimatePresence>
+        </main>
+
+        <Footer onNavigate={navigateHandler} />
+
+        {/* Global Checkout Modal */}
+        <AnimatePresence>
+          {showCheckout && (
+            <CheckoutModal isOpen={showCheckout} onClose={() => setShowCheckout(false)} />
+          )}
         </AnimatePresence>
-      </main>
-
-      <Footer onNavigate={navigateHandler} />
-
-      {/* Global Checkout Modal */}
-      <CheckoutModal isOpen={showCheckout} onClose={() => setShowCheckout(false)} />
-    </div>
+      </div>
+    </SmoothScroll>
   )
 }
 

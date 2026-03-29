@@ -17,7 +17,7 @@ const Listing = ({ onNavigate }) => {
           className="mb-32 space-y-12 max-w-5xl"
         >
           <div className="flex items-baseline gap-4">
-            <h1 className="text-6xl md:text-[80px] font-bold tracking-[-0.04em] text-[#111111]">Curated <span className="text-[#4F8CFF]">Essentials.</span></h1>
+            <h1 className="text-6xl md:text-[80px] font-bold tracking-[-0.04em] text-[#111111]">Curated <span className="font-serif italic font-normal text-[#4F8CFF]">Essentials.</span></h1>
           </div>
           <p className="text-2xl text-[#111111]/40 leading-relaxed font-medium max-w-3xl italic">
             A deliberate collection of artisan goods and daily necessities, selected for their quality, heritage, and timeless design.

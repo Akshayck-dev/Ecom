@@ -23,8 +23,23 @@ html {
 }
 
 body {
-  @apply bg-white text-zinc-950 font-inter antialiased;
+  @apply bg-white text-zinc-950 font-inter antialiased relative overflow-x-hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Global Noise Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  @apply bg-noise opacity-[0.03] pointer-events-none z-[9999] animate-noise;
+}
+
+.font-serif {
+  font-family: "Instrument Serif", serif;
 }

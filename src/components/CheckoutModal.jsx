@@ -9,9 +9,10 @@ const CheckoutModal = ({ isOpen, onClose }) => {
   const cart = useSelector((state) => state.cart)
 
   const handleWhatsAppOrder = () => {
-    const itemsList = cart.items.map(item => `${item.name} x${item.quantity} ($${item.totalPrice})`).join('\n')
+    const orderId = Math.random().toString(36).substring(2, 9).toUpperCase()
+    const itemsList = cart.items.map(item => `• ${item.name} x${item.quantity} ($${item.totalPrice})`).join('\n')
     const total = (cart.totalAmount * 1.08).toFixed(2)
-    const text = `Hello Atelier,\n\nI'd like to place an order:\n\n${itemsList}\n\nTotal (incl. tax): $${total}\n\nDelivery Details:\n[Name]\n[Phone]\n[Address]`
+    const text = `*ATELIER — ORDER #${orderId}*\n\nHello, I'd like to place an order for the following curated items:\n\n${itemsList}\n\n*Total (incl. tax): $${total}*\n\n*Delivery Details:*\nName: [Enter Name]\nPhone: [Enter Phone]\nAddress: [Enter Address]\n\n_Thank you for your archival selection._`
     window.open(`https://wa.me/1234567890?text=${encodeURIComponent(text)}`, '_blank')
   }
 

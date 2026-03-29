@@ -41,7 +41,7 @@ const Home = ({ onNavigate }) => {
               className="text-7xl md:text-[130px] font-bold tracking-[-0.04em] text-[#111111] leading-[0.85]"
             >
               The Art of <br />
-              <span className="text-[#4F8CFF]">Intentional</span> Living
+              <span className="font-serif italic font-normal text-[#4F8CFF]">Intentional</span> Living
             </motion.h1>
           </div>
           

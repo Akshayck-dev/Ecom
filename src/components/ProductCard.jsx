@@ -34,13 +34,22 @@ const ProductCard = ({ product, onNavigate }) => {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-x-0 bottom-0 p-8 translate-y-full group-hover:translate-y-0 transition-transform duration-700 bg-gradient-to-t from-black/20 to-transparent">
+        <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-700 bg-gradient-to-t from-black/40 to-transparent flex flex-col gap-2">
           <Button 
+            onClick={addToCartHandler}
+            variant="primary"
+            size="sm"
+            className="w-full bg-[#4F8CFF] text-white border-none"
+          >
+            QUICK ADD
+          </Button>
+          <Button 
+            onClick={() => onNavigate('detail', product.id)}
             variant="outline"
             size="sm"
-            className="w-full bg-white/90 backdrop-blur-md border-none !text-[#111111]"
+            className="w-full bg-white/10 backdrop-blur-md border border-white/20 !text-white"
           >
-            VIEW ARCHIVE
+            DETAILS
           </Button>
         </div>
       </div>

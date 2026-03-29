@@ -15,7 +15,7 @@ const About = () => {
           <span className="text-[12px] font-bold uppercase tracking-[0.5em] text-[#4F8CFF] block">OUR ESSENCE</span>
           <h1 className="text-7xl md:text-[140px] font-bold tracking-tighter text-[#111111] leading-[0.85] flex flex-col">
             <span>Designing for</span>
-            <span className="italic font-normal text-[#111111]/10">Generations.</span>
+            <span className="font-serif italic font-normal text-[#111111]/10">Generations.</span>
           </h1>
           <p className="text-2xl md:text-4xl text-[#111111]/40 leading-tight font-medium max-w-3xl italic">
             Atelier is a ritual-based studio focused on objects that gain character with age.
