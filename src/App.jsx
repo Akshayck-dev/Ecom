@@ -9,9 +9,11 @@ import Cart from './pages/Cart'
 import About from './pages/About'
 import FAQ from './pages/FAQ'
 import Contact from './pages/Contact'
+import CheckoutModal from './components/CheckoutModal'
 
 function App() {
   const [view, setView] = useState({ id: 'home', params: null })
+  const [showCheckout, setShowCheckout] = useState(false)
 
   // Scroll to top on view change
   useEffect(() => {
@@ -31,7 +33,7 @@ function App() {
       case 'detail':
         return <ProductDetail productId={view.params} onNavigate={navigateHandler} />
       case 'cart':
-        return <Cart onNavigate={navigateHandler} />
+        return <Cart onNavigate={navigateHandler} setShowCheckout={setShowCheckout} />
       case 'about':
         return <About />
       case 'faq':
@@ -62,6 +64,9 @@ function App() {
       </main>
 
       <Footer onNavigate={navigateHandler} />
+
+      {/* Global Checkout Modal */}
+      <CheckoutModal isOpen={showCheckout} onClose={() => setShowCheckout(false)} />
     </div>
   )
 }

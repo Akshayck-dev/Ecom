@@ -11,135 +11,148 @@ const Home = ({ onNavigate }) => {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white">
-        <div className="relative z-10 text-center space-y-12 px-6 max-w-5xl mx-auto">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-[#F5F5F7]">
+        {/* Abstract Background Elements */}
+        <div className="absolute top-0 right-0 w-[60%] h-full bg-[#E5E7EB]/30 translate-x-[20%] -skew-x-12" />
+        
+        <div className="relative z-10 text-center space-y-12 px-6 max-w-6xl mx-auto">
           <motion.span 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[12px] font-bold uppercase tracking-[0.5em] text-[#4F8CFF] block"
+            initial={{ opacity: 0, tracking: "0.2em" }}
+            animate={{ opacity: 1, tracking: "0.8em" }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[11px] font-bold uppercase text-[#111111]/30 block"
           >
-            AUTUMN / WINTER 2026
+            SUMMER COLLECTION 2024
           </motion.span>
           
-          <motion.h1 
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="text-7xl md:text-[140px] font-bold tracking-tighter text-[#111111] leading-[0.9] flex flex-col"
-          >
-            <span>Curating the</span>
-            <span className="italic font-normal text-[#111111]/10">Essential.</span>
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[#111111]/40 text-lg md:text-2xl max-w-2xl mx-auto font-medium leading-relaxed italic"
-          >
-            Objects designed to elevate your daily ritual and define your modern sanctuary.
-          </motion.p>
+          <div className="space-y-6">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="text-[#111111]/40 text-lg md:text-xl font-medium"
+            >
+              Inter
+            </motion.p>
+            <motion.h1 
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="text-7xl md:text-[130px] font-bold tracking-[-0.04em] text-[#111111] leading-[0.85]"
+            >
+              The Art of <br />
+              <span className="text-[#4F8CFF]">Intentional</span> Living
+            </motion.h1>
+          </div>
           
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            className="pt-10"
+            className="flex flex-col md:flex-row items-center justify-center gap-6 pt-12"
           >
             <Button 
               onClick={() => onNavigate('listing')} 
               variant="primary"
               size="lg"
+              className="min-w-[220px]"
             >
-              EXPLORE ARCHIVE
+              EXPLORE NOW
+            </Button>
+            <Button 
+              onClick={() => onNavigate('listing')} 
+              variant="outline"
+              size="lg"
+              className="min-w-[220px] bg-white/50 backdrop-blur-sm border-none shadow-sm"
+            >
+              LOOKBOOK
             </Button>
           </motion.div>
         </div>
       </section>
 
-      {/* Featured Products Grid */}
+      {/* New Arrivals */}
       <section className="max-w-[1400px] mx-auto px-6 md:px-12 py-48 md:py-64">
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col md:flex-row justify-between items-baseline gap-12 mb-32"
-        >
-          <div className="space-y-6 max-w-2xl">
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-[#111111] leading-none">The Curated Edit.</h2>
-            <p className="text-[#111111]/30 font-medium italic text-xl md:text-2xl leading-relaxed">
-              Hand-picked essentials for the intentional home, selected for their silent aesthetic power.
-            </p>
-          </div>
-          <button 
-            onClick={() => onNavigate('listing')}
-            className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#4F8CFF] group flex items-center gap-4 transition-all duration-500"
-          >
-            VIEW ALL COLLECTIONS
-            <div className="w-12 h-[1px] bg-[#4F8CFF]/30 group-hover:w-24 transition-all duration-700" />
-          </button>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
-          {featuredProducts.map(product => (
-            <ProductCard key={product.id} product={product} onNavigate={onNavigate} />
+        <div className="mb-24">
+          <h2 className="text-[32px] font-bold tracking-tight text-[#111111]">New Arrivals</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+          {featuredProducts.slice(0, 3).map(product => (
+            <div key={product.id} className="space-y-8">
+              <ProductCard product={product} onNavigate={onNavigate} />
+              <div className="flex flex-col gap-4">
+                <Button variant="primary" className="w-full">EXPLORE NOW</Button>
+                <Button variant="outline" className="w-full">LOOKBOOK</Button>
+              </div>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* Philosophy Section */}
-      <section className="bg-[#F5F5F7] py-48 md:py-64 overflow-hidden">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-24 items-center">
-          <motion.div 
-            initial={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
-            whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 relative aspect-[16/10] rounded-[3rem] overflow-hidden shadow-premium-lg"
-          >
-            <img 
-              src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=1000" 
-              alt="Archival Design" 
-              className="w-full h-full object-cover scale-110 hover:scale-100 transition-transform duration-[3s]"
-            />
-          </motion.div>
-          <div className="lg:col-span-5 space-y-16">
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="space-y-8"
-            >
-              <h2 className="text-5xl md:text-6xl font-bold tracking-tighter leading-[1] text-[#111111]">
-                Honoring <br />craftsmanship in <br />every detail.
-              </h2>
-              <p className="text-[#111111]/40 leading-relaxed text-xl font-medium italic">
-                We believe that objects are silent extensions of our philosophy. Every piece in our collection is vetted for archival quality.
-              </p>
-            </motion.div>
-            
-            <div className="grid grid-cols-2 gap-16 pt-12 border-t border-[#111111]/5">
-              {[
-                { label: 'ETHICALLY SOURCED', value: '100%' },
-                { label: 'ARTISAN ATELIERS', value: '25+' }
-              ].map((stat, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.6 + i * 0.2, duration: 1 }}
-                  className="space-y-4"
-                >
-                  <p className="text-6xl font-bold tracking-tighter text-[#111111]">{stat.value}</p>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#4F8CFF]">{stat.label}</p>
-                </motion.div>
-              ))}
-            </div>
+      {/* Curated Verticals */}
+      <section className="bg-white py-48 md:py-64">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <h2 className="text-[32px] font-bold tracking-tight text-[#111111] mb-24">Curated Verticals</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { name: 'Fashion Street', img: 'https://images.unsplash.com/photo-1445205170230-053b830c6050?q=80&w=1000' },
+              { name: 'Healthy Kitchen', img: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1000' },
+              { name: 'Natural Care Zone', img: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1000' },
+              { name: 'Gift Corner', img: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=1000' },
+              { name: 'Kids Zone', img: 'https://images.unsplash.com/photo-1515488442202-6a62156ec462?q=80&w=1000' },
+              { name: 'Service Zone', img: 'https://images.unsplash.com/photo-1521737706076-79de22bbad52?q=80&w=1000' },
+              { name: 'Pack Corner', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000' },
+              { name: 'New Premium', img: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=1000' }
+            ].map((v, i) => (
+              <motion.div 
+                key={i}
+                whileHover={{ y: -8 }}
+                className="group cursor-pointer aspect-square relative rounded-2xl overflow-hidden bg-[#F5F5F7]"
+              >
+                <img src={v.img} alt={v.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <div className="absolute inset-0 bg-black/5" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <span className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-lg text-[12px] font-bold tracking-tight text-[#111111] shadow-sm">
+                    {v.name}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* Hall of Classics */}
+      <section className="max-w-[1400px] mx-auto px-6 md:px-12 py-48 md:py-64">
+        <h2 className="text-[32px] font-bold tracking-tight text-[#111111] mb-24">Hall of Classics</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+          {products.slice(4, 7).map(product => (
+            <div key={product.id} className="space-y-8">
+              <div className="aspect-square bg-[#F5F5F7] rounded-2xl overflow-hidden group cursor-pointer shadow-premium-sm hover:shadow-premium-lg transition-all duration-700">
+                <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-[#111111]">{product.name}</h3>
+                <Button variant="primary" className="w-full">EXPLORE NOW</Button>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        {/* Features Bar */}
+        <div className="mt-48 pt-24 border-t border-[#111111]/5 flex flex-wrap justify-center gap-24 md:gap-48">
+          {[
+            { label: 'Local Sellers', icon: '📍' },
+            { label: 'Handmade Quality', icon: '🤝' },
+            { label: 'Fast Delivery', icon: '🚚' }
+          ].map((feature, i) => (
+            <div key={i} className="flex flex-col items-center gap-4 text-center group">
+              <span className="text-3xl filter grayscale group-hover:grayscale-0 transition-all duration-500">{feature.icon}</span>
+              <span className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#111111]/40 group-hover:text-[#111111] transition-colors">
+                {feature.label}
+              </span>
+            </div>
+          ))}
         </div>
       </section>
     </div>
