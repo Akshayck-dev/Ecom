@@ -59,9 +59,11 @@ const Navbar = ({ onNavigate, currentView }) => {
             <ShoppingBag size={20} className="text-[#111111]/60" />
             {cartQuantity > 0 && (
               <motion.span 
+                key={cartQuantity}
                 initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="absolute top-0 right-0 bg-[#4F8CFF] text-white text-[8px] font-bold w-4 h-4 flex items-center justify-center rounded-full border-2 border-white"
+                animate={{ scale: [1, 1.4, 1] }}
+                transition={{ duration: 0.4 }}
+                className="absolute -top-1 -right-1 bg-[#4F8CFF] text-white text-[9px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white shadow-sm"
               >
                 {cartQuantity}
               </motion.span>

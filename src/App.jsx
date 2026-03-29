@@ -31,7 +31,7 @@ function App() {
       case 'home':
         return <Home onNavigate={navigateHandler} />
       case 'listing':
-        return <Listing onNavigate={navigateHandler} />
+        return <Listing onNavigate={navigateHandler} categoryFilter={view.params} />
       case 'detail':
         return <ProductDetail productId={view.params} onNavigate={navigateHandler} />
       case 'cart':

@@ -12,8 +12,12 @@ const ProductDetail = ({ productId, onNavigate }) => {
   const product = products.find(p => p.id === productId) || products[0]
   const relatedProducts = products.filter(p => p.id !== product.id).slice(0, 4)
 
+  const [added, setAdded] = React.useState(false)
+ 
   const addToCartHandler = () => {
     dispatch(cartActions.addItemToCart(product))
+    setAdded(true)
+    setTimeout(() => setAdded(false), 2000)
   }
 
   const whatsappOrder = () => {
@@ -136,9 +140,9 @@ const ProductDetail = ({ productId, onNavigate }) => {
                 </Button>
                 <button 
                   onClick={addToCartHandler}
-                  className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#111111]/40 hover:text-[#111111] transition-colors"
+                  className={`text-[11px] font-bold uppercase tracking-[0.3em] transition-all duration-300 ${added ? 'text-emerald-500 scale-110' : 'text-[#111111]/40 hover:text-[#111111]'}`}
                 >
-                  ADD TO CART
+                  {added ? 'ADDED ✓' : 'ADD TO CART'}
                 </button>
               </div>
             </div>

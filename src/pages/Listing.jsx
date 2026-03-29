@@ -3,13 +3,36 @@ import { motion } from 'framer-motion'
 import { useSelector } from 'react-redux'
 import ProductCard from '../components/ProductCard'
 
-const Listing = ({ onNavigate }) => {
+const Listing = ({ onNavigate, categoryFilter }) => {
   const products = useSelector((state) => state.products.items)
+  const [activeCategory, setActiveCategory] = React.useState(categoryFilter || 'All Products')
+
+  const filteredProducts = activeCategory === 'All Products' 
+    ? products 
+    : products.filter(p => p.category === activeCategory)
+
+  const categories = [
+    { name: 'All Products', count: products.length },
+    { name: 'Home Decor', count: products.filter(p => p.category === 'Home Decor').length },
+    { name: 'Kitchenware', count: products.filter(p => p.category === 'Kitchenware').length },
+    { name: 'Stationery', count: products.filter(p => p.category === 'Stationery').length },
+    { name: 'Textiles', count: products.filter(p => p.category === 'Textiles').length },
+    { name: 'Electronics', count: products.filter(p => p.category === 'Electronics').length },
+    { name: 'Accessories', count: products.filter(p => p.category === 'Accessories').length },
+    { name: 'Furniture', count: products.filter(p => p.category === 'Furniture').length }
+  ]
+
+  // Sync active category if filter changes from prop (e.g. from Home page click)
+  React.useEffect(() => {
+    if (categoryFilter) {
+      setActiveCategory(categoryFilter)
+    }
+  }, [categoryFilter])
 
   return (
     <div className="pt-48 pb-32 bg-white">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-        {/* Header */}
+        {/* Header content ... */}
         <motion.header 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -31,16 +54,14 @@ const Listing = ({ onNavigate }) => {
             <div className="space-y-8">
               <h3 className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#111111]/20">Category</h3>
               <ul className="space-y-4">
-                {[
-                  { name: 'All Products', count: 48 },
-                  { name: 'Home Decor', count: 12 },
-                  { name: 'Kitchenware', count: 6 },
-                  { name: 'Stationery', count: 15 },
-                  { name: 'Textiles', count: 12 }
-                ].map((cat, i) => (
-                  <li key={i} className="flex justify-between items-center group cursor-pointer">
-                    <span className="text-[14px] font-bold text-[#111111]/60 group-hover:text-[#4F8CFF] transition-colors">{cat.name}</span>
-                    <span className="text-[11px] font-bold text-[#111111]/20 group-hover:text-[#111111]/40">({cat.count})</span>
+                {categories.map((cat, i) => (
+                  <li 
+                    key={i} 
+                    onClick={() => setActiveCategory(cat.name)}
+                    className="flex justify-between items-center group cursor-pointer"
+                  >
+                    <span className={`text-[14px] font-bold transition-colors ${activeCategory === cat.name ? 'text-[#4F8CFF]' : 'text-[#111111]/60 group-hover:text-[#4F8CFF]'}`}>{cat.name}</span>
+                    <span className={`text-[11px] font-bold transition-colors ${activeCategory === cat.name ? 'text-[#4F8CFF]/50' : 'text-[#111111]/20 group-hover:text-[#111111]/40'}`}>({cat.count})</span>
                   </li>
                 ))}
               </ul>
@@ -88,7 +109,7 @@ const Listing = ({ onNavigate }) => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-24">
-              {products.map(product => (
+              {filteredProducts.map(product => (
                 <ProductCard 
                   key={product.id} 
                   product={product} 

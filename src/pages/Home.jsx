@@ -82,7 +82,7 @@ const Home = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* New Arrivals with Scroll Reveal */}
+      {/* Featured Essentials with Scroll Reveal */}
       <motion.section 
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -90,8 +90,14 @@ const Home = ({ onNavigate }) => {
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         className="max-w-[1400px] mx-auto px-6 md:px-12 py-48 md:py-64"
       >
-        <div className="mb-24">
-          <h2 className="text-[32px] md:text-5xl font-bold tracking-tight text-[#111111]">New Arrivals</h2>
+        <div className="flex justify-between items-end mb-24 border-b border-[#111111]/5 pb-8">
+          <h2 className="text-[32px] md:text-5xl font-bold tracking-tight text-[#111111]">Featured Essentials</h2>
+          <button 
+            onClick={() => onNavigate('listing')}
+            className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#111111]/40 hover:text-[#4F8CFF] transition-colors"
+          >
+            VIEW ALL PIECES
+          </button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
           {featuredProducts.slice(0, 3).map((product, idx) => (
@@ -115,36 +121,41 @@ const Home = ({ onNavigate }) => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
-        className="bg-white py-48 md:py-64"
+        className="bg-[#F5F5F7]/30 py-48 md:py-64"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <h2 className="text-[32px] md:text-5xl font-bold tracking-tight text-[#111111] mb-24">Curated Verticals</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="max-w-3xl mb-24">
+            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#4F8CFF] block mb-4">CATEGORIES</span>
+            <h2 className="text-[32px] md:text-5xl font-bold tracking-tight text-[#111111]">Curated Verticals</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { name: 'Fashion Street', img: 'https://images.unsplash.com/photo-1445205170230-053b830c6050?q=80&w=1000' },
-              { name: 'Healthy Kitchen', img: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1000' },
-              { name: 'Natural Care Zone', img: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1000' },
-              { name: 'Gift Corner', img: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=1000' },
-              { name: 'Kids Zone', img: 'https://images.unsplash.com/photo-1515488442202-6a62156ec462?q=80&w=1000' },
-              { name: 'Service Zone', img: 'https://images.unsplash.com/photo-1521737706076-79de22bbad52?q=80&w=1000' },
-              { name: 'Pack Corner', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000' },
-              { name: 'New Premium', img: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=1000' }
+              { name: 'Fashion Street', category: 'Textiles', img: 'https://images.unsplash.com/photo-1445205170230-053b830c6050?q=80&w=1000' },
+              { name: 'Healthy Kitchen', category: 'Kitchenware', img: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1000' },
+              { name: 'Natural Care', category: 'Accessories', img: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1000' },
+              { name: 'Gift Corner', category: 'Stationery', img: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=1000' },
+              { name: 'Kids Zone', category: 'Home Decor', img: 'https://images.unsplash.com/photo-1515488442202-6a62156ec462?q=80&w=1000' },
+              { name: 'Service Zone', category: 'Electronics', img: 'https://images.unsplash.com/photo-1521737706076-79de22bbad52?q=80&w=1000' },
+              { name: 'Pack Corner', category: 'Accessories', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000' },
+              { name: 'New Premium', category: 'Furniture', img: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=1000' }
             ].map((v, i) => (
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
+                onClick={() => onNavigate('listing', v.category)}
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ duration: 0.6, delay: i * 0.05 }}
-                className="group cursor-pointer aspect-square relative rounded-3xl overflow-hidden bg-[#F5F5F7] shadow-luxury-sm hover:shadow-luxury-lg"
+                className="group cursor-pointer aspect-square relative rounded-[2.5rem] overflow-hidden bg-white shadow-luxury-sm hover:shadow-luxury-lg"
               >
                 <img src={v.img} alt={v.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-black/5" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <span className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl text-[12px] font-bold tracking-tight text-[#111111] shadow-sm">
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors duration-500" />
+                <div className="absolute bottom-6 left-6 right-6 flex flex-col items-start gap-1">
+                  <span className="bg-white/95 backdrop-blur-md px-4 py-2 rounded-xl text-[12px] font-bold tracking-tight text-[#111111]">
                     {v.name}
                   </span>
+                  <span className="text-[9px] font-bold text-white/60 tracking-widest pl-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">EXPLORE CATEGORY</span>
                 </div>
               </motion.div>
             ))}

@@ -6,10 +6,13 @@ import Button from '../components/Button'
 
 const ProductCard = ({ product, onNavigate }) => {
   const dispatch = useDispatch()
-
+  const [added, setAdded] = React.useState(false)
+ 
   const addToCartHandler = (e) => {
     e.stopPropagation()
     dispatch(cartActions.addItemToCart(product))
+    setAdded(true)
+    setTimeout(() => setAdded(false), 2000)
   }
 
   return (
@@ -39,9 +42,9 @@ const ProductCard = ({ product, onNavigate }) => {
             onClick={addToCartHandler}
             variant="primary"
             size="sm"
-            className="w-full bg-[#4F8CFF] text-white border-none"
+            className={`w-full border-none transition-all duration-300 ${added ? 'bg-emerald-500 scale-105' : 'bg-[#4F8CFF] text-white'}`}
           >
-            QUICK ADD
+            {added ? 'ADDED ✓' : 'QUICK ADD'}
           </Button>
           <Button 
             onClick={() => onNavigate('detail', product.id)}
