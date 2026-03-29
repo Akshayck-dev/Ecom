@@ -7,9 +7,9 @@ const About = () => {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12">
         {/* Cinematic Header */}
         <motion.header 
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           className="mb-48 md:mb-64 space-y-12 max-w-5xl"
         >
           <span className="text-[12px] font-bold uppercase tracking-[0.5em] text-[#4F8CFF] block">OUR ESSENCE</span>
@@ -17,7 +17,7 @@ const About = () => {
             <span>Designing for</span>
             <span className="font-serif italic font-normal text-[#111111]/10">Generations.</span>
           </h1>
-          <p className="text-2xl md:text-4xl text-[#111111]/40 leading-tight font-medium max-w-3xl italic">
+          <p className="text-2xl md:text-3xl text-[#111111]/40 leading-tight font-medium max-w-3xl italic">
             Atelier is a ritual-based studio focused on objects that gain character with age.
           </p>
         </motion.header>

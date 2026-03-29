@@ -11,23 +11,24 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-32">
           {/* Header */}
           <motion.div 
-            initial={{ opacity: 0, x: -60 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-12 mb-32"
           >
             <span className="text-[12px] font-bold uppercase tracking-[0.5em] text-[#4F8CFF] block mb-12">ATELIER CONCIERGE</span>
             <h1 className="text-7xl md:text-[140px] font-bold tracking-tighter text-[#111111] leading-[0.85] flex flex-col">
               <span>Connect with</span>
-              <span className="italic font-normal text-[#111111]/10">The Studio.</span>
+              <span className="font-serif italic font-normal text-[#111111]/10">The Studio.</span>
             </h1>
           </motion.div>
 
           {/* Form */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-12"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-24">
@@ -40,12 +41,12 @@ const Contact = () => {
                   <div className="space-y-6 group">
                     <label className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#111111]/30 group-focus-within:text-[#4F8CFF] transition-colors duration-500 ml-1">MESSAGE</label>
                     <textarea 
-                      className="w-full bg-[#F5F5F7]/30 backdrop-blur-sm border-b border-[#E5E7EB] py-6 text-xl font-medium text-[#111111] placeholder:text-[#111111]/20 outline-none focus:border-[#4F8CFF] transition-all duration-700 ease-[0.16, 1, 0.3, 1] min-h-[150px] resize-none"
+                      className="w-full bg-transparent border-b border-[#E5E7EB] py-6 text-base md:text-lg font-medium text-[#111111] placeholder:text-[#111111]/20 outline-none focus:border-[#4F8CFF] focus:ring-1 focus:ring-[#4F8CFF]/5 transition-all duration-500 ease-[0.16, 1, 0.3, 1] min-h-[150px] resize-none"
                       placeholder="Discuss your archival needs..."
                     ></textarea>
                   </div>
                   <div className="pt-8">
-                    <Button type="submit" className="px-16 py-6 rounded-full bg-[#111111] text-white hover:scale-105 transition-transform duration-500 text-[10px] tracking-[0.4em] shadow-premium-lg">
+                    <Button type="submit" size="lg" className="w-full md:w-auto min-w-[280px]">
                       SUBMIT INQUIRY
                     </Button>
                   </div>

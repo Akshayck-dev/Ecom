@@ -17,9 +17,10 @@ export default {
         'premium': '1rem', // 16px (rounded-2xl equivalent)
       },
       boxShadow: {
-        'premium-sm': '0 2px 4px rgba(0,0,0,0.02)',
-        'premium-md': '0 4px 20px -2px rgba(0,0,0,0.05)',
-        'premium-lg': '0 20px 40px -4px rgba(0,0,0,0.08)',
+        'luxury-sm': '0 2px 4px rgba(0,0,0,0.01), 0 1px 2px rgba(0,0,0,0.01)',
+        'luxury-md': '0 4px 20px -2px rgba(0,0,0,0.04), 0 2px 10px -2px rgba(0,0,0,0.02)',
+        'luxury-lg': '0 30px 60px -12px rgba(0,0,0,0.08), 0 18px 36px -18px rgba(0,0,0,0.08)',
+        'luxury-xl': '0 50px 100px -20px rgba(0,0,0,0.12), 0 30px 60px -30px rgba(0,0,0,0.15)',
       },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],

@@ -25,8 +25,11 @@ const Button = ({
 
   return (
     <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={{ 
+        scale: 1.05,
+        boxShadow: "0 20px 40px -10px rgba(0,0,0,0.12)"
+      }}
+      whileTap={{ scale: 0.95 }}
       type={type}
       onClick={onClick}
       className={`

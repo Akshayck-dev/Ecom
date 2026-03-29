@@ -21,10 +21,10 @@ const Accordion = ({ items }) => {
             </span>
             <motion.div
               animate={{ rotate: openIndex === index ? 180 : 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="text-[#4F8CFF]"
             >
-              <ChevronDown size={24} strokeWidth={2.5} />
+              <ChevronDown size={22} strokeWidth={2} />
             </motion.div>
           </button>
           

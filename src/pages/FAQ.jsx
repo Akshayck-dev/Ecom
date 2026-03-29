@@ -25,19 +25,26 @@ const FAQ = () => {
     <div className="pt-48 pb-64 bg-white min-h-screen">
       <div className="max-w-[900px] mx-auto px-6 md:px-12">
         <motion.header 
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="mb-48 md:mb-64 space-y-10"
         >
           <span className="text-[12px] font-bold uppercase tracking-[0.5em] text-[#4F8CFF] block">SUPPORT ARCHIVE</span>
-          <h1 className="text-6xl md:text-[120px] font-bold tracking-tighter text-[#111111] leading-none flex flex-col">
+          <h1 className="text-6xl md:text-[120px] font-bold tracking-tighter text-[#111111] leading-[0.85] flex flex-col">
             <span>Frequently</span>
-            <span className="italic font-normal text-[#111111]/10 text-right">Asked.</span>
+            <span className="font-serif italic font-normal text-[#111111]/10 text-right">Asked.</span>
           </h1>
         </motion.header>
 
-        <Accordion items={faqData} />
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.4 }}
+        >
+          <Accordion items={faqData} />
+        </motion.div>
       </div>
     </div>
   )

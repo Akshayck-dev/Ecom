@@ -13,7 +13,7 @@ const Input = ({ label, type = 'text', placeholder, value, onChange, className =
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="w-full bg-[#F5F5F7]/30 backdrop-blur-sm border-b border-[#E5E7EB] py-4 md:py-6 text-lg md:text-xl font-medium text-[#111111] placeholder:text-[#111111]/20 outline-none focus:border-[#4F8CFF] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        className="w-full bg-transparent border-b border-[#E5E7EB] py-4 md:py-6 text-base md:text-lg font-medium text-[#111111] placeholder:text-[#111111]/20 outline-none focus:border-[#4F8CFF] focus:ring-1 focus:ring-[#4F8CFF]/5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
         {...props}
       />
     </div>

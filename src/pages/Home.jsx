@@ -12,87 +12,113 @@ const Home = ({ onNavigate }) => {
     <div className="pt-20">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden bg-[#F5F5F7]">
-        {/* Abstract Background Elements */}
-        <div className="absolute top-0 right-0 w-[60%] h-full bg-[#E5E7EB]/30 translate-x-[20%] -skew-x-12" />
+        {/* Abstract Background Elements with Parallax */}
+        <motion.div 
+          initial={{ x: "20%", rotate: -12 }}
+          animate={{ x: "15%", rotate: -10 }}
+          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
+          className="absolute top-0 right-0 w-[60%] h-full bg-[#E5E7EB]/30 translate-x-[20%] -skew-x-12" 
+        />
         
         <div className="relative z-10 text-center space-y-12 px-6 max-w-6xl mx-auto">
-          <motion.span 
-            initial={{ opacity: 0, tracking: "0.2em" }}
-            animate={{ opacity: 1, tracking: "0.8em" }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[11px] font-bold uppercase text-[#111111]/30 block"
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.2
+                }
+              }
+            }}
           >
-            SUMMER COLLECTION 2024
-          </motion.span>
-          
-          <div className="space-y-6">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.3 }}
-              className="text-[#111111]/40 text-lg md:text-xl font-medium"
+            <motion.span 
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              className="text-[11px] font-bold uppercase tracking-[0.6em] text-[#111111]/30 block mb-6"
             >
-              Inter
-            </motion.p>
+              SUMMER COLLECTION 2024
+            </motion.span>
+            
             <motion.h1 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="text-7xl md:text-[130px] font-bold tracking-[-0.04em] text-[#111111] leading-[0.85]"
+              variants={{
+                hidden: { opacity: 0, y: 40 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-7xl md:text-[130px] font-bold tracking-[-0.04em] text-[#111111] leading-[0.85] mb-12"
             >
               The Art of <br />
               <span className="font-serif italic font-normal text-[#4F8CFF]">Intentional</span> Living
             </motion.h1>
-          </div>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col md:flex-row items-center justify-center gap-6 pt-12"
-          >
-            <Button 
-              onClick={() => onNavigate('listing')} 
-              variant="primary"
-              size="lg"
-              className="min-w-[220px]"
+
+            <motion.div 
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              className="flex flex-col md:flex-row items-center justify-center gap-6 pt-12"
             >
-              EXPLORE NOW
-            </Button>
-            <Button 
-              onClick={() => onNavigate('listing')} 
-              variant="outline"
-              size="lg"
-              className="min-w-[220px] bg-white/50 backdrop-blur-sm border-none shadow-sm"
-            >
-              LOOKBOOK
-            </Button>
+              <Button 
+                onClick={() => onNavigate('listing')} 
+                variant="primary"
+                size="lg"
+                className="min-w-[220px]"
+              >
+                EXPLORE NOW
+              </Button>
+              <Button 
+                onClick={() => onNavigate('listing')} 
+                variant="outline"
+                size="lg"
+                className="min-w-[220px] bg-white/50 backdrop-blur-sm border-none shadow-luxury-md"
+              >
+                LOOKBOOK
+              </Button>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* New Arrivals */}
-      <section className="max-w-[1400px] mx-auto px-6 md:px-12 py-48 md:py-64">
+      {/* New Arrivals with Scroll Reveal */}
+      <motion.section 
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-[1400px] mx-auto px-6 md:px-12 py-48 md:py-64"
+      >
         <div className="mb-24">
-          <h2 className="text-[32px] font-bold tracking-tight text-[#111111]">New Arrivals</h2>
+          <h2 className="text-[32px] md:text-5xl font-bold tracking-tight text-[#111111]">New Arrivals</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-          {featuredProducts.slice(0, 3).map(product => (
-            <div key={product.id} className="space-y-8">
+          {featuredProducts.slice(0, 3).map((product, idx) => (
+            <motion.div 
+              key={product.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: idx * 0.1 }}
+              className="space-y-8"
+            >
               <ProductCard product={product} onNavigate={onNavigate} />
-              <div className="flex flex-col gap-4">
-                <Button variant="primary" className="w-full">EXPLORE NOW</Button>
-                <Button variant="outline" className="w-full">LOOKBOOK</Button>
-              </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
-      {/* Curated Verticals */}
-      <section className="bg-white py-48 md:py-64">
+      {/* Curated Verticals with Scroll Reveal */}
+      <motion.section 
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="bg-white py-48 md:py-64"
+      >
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <h2 className="text-[32px] font-bold tracking-tight text-[#111111] mb-24">Curated Verticals</h2>
+          <h2 className="text-[32px] md:text-5xl font-bold tracking-tight text-[#111111] mb-24">Curated Verticals</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { name: 'Fashion Street', img: 'https://images.unsplash.com/photo-1445205170230-053b830c6050?q=80&w=1000' },
@@ -106,13 +132,17 @@ const Home = ({ onNavigate }) => {
             ].map((v, i) => (
               <motion.div 
                 key={i}
-                whileHover={{ y: -8 }}
-                className="group cursor-pointer aspect-square relative rounded-2xl overflow-hidden bg-[#F5F5F7]"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.6, delay: i * 0.05 }}
+                className="group cursor-pointer aspect-square relative rounded-3xl overflow-hidden bg-[#F5F5F7] shadow-luxury-sm hover:shadow-luxury-lg"
               >
-                <img src={v.img} alt={v.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src={v.img} alt={v.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-black/5" />
                 <div className="absolute bottom-6 left-6 right-6">
-                  <span className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-lg text-[12px] font-bold tracking-tight text-[#111111] shadow-sm">
+                  <span className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl text-[12px] font-bold tracking-tight text-[#111111] shadow-sm">
                     {v.name}
                   </span>
                 </div>
@@ -120,22 +150,35 @@ const Home = ({ onNavigate }) => {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Hall of Classics */}
-      <section className="max-w-[1400px] mx-auto px-6 md:px-12 py-48 md:py-64">
-        <h2 className="text-[32px] font-bold tracking-tight text-[#111111] mb-24">Hall of Classics</h2>
+      {/* Hall of Classics with Scroll Reveal */}
+      <motion.section 
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="max-w-[1400px] mx-auto px-6 md:px-12 py-48 md:py-64"
+      >
+        <h2 className="text-[32px] md:text-5xl font-bold tracking-tight text-[#111111] mb-24">Hall of Classics</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-          {products.slice(4, 7).map(product => (
-            <div key={product.id} className="space-y-8">
-              <div className="aspect-square bg-[#F5F5F7] rounded-2xl overflow-hidden group cursor-pointer shadow-premium-sm hover:shadow-premium-lg transition-all duration-700">
-                <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+          {products.slice(4, 7).map((product, idx) => (
+            <motion.div 
+              key={product.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: idx * 0.1 }}
+              className="space-y-8"
+            >
+              <div className="aspect-square bg-[#F5F5F7] rounded-[2.5rem] overflow-hidden group cursor-pointer shadow-luxury-sm hover:shadow-luxury-lg transition-all duration-700">
+                <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-115 transition-transform duration-1000" />
               </div>
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-[#111111]">{product.name}</h3>
-                <Button variant="primary" className="w-full">EXPLORE NOW</Button>
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-[#111111]">{product.name}</h3>
+                <Button variant="primary" className="w-full">DISCOVER PIECE</Button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
         
@@ -154,7 +197,7 @@ const Home = ({ onNavigate }) => {
             </div>
           ))}
         </div>
-      </section>
+      </motion.section>
     </div>
   )
 }

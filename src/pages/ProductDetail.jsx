@@ -65,19 +65,19 @@ const ProductDetail = ({ productId, onNavigate }) => {
 
           {/* Info Section */}
           <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 flex flex-col justify-start space-y-12"
           >
-            <div className="space-y-4 pt-12">
-              <span className="text-[12px] font-bold uppercase tracking-[0.4em] text-[#111111]/20 block">
-                SUMMER 2024 COLLECTION
+            <div className="space-y-6 pt-12">
+              <span className="text-[12px] font-bold uppercase tracking-[0.5em] text-[#4F8CFF] block">
+                SUMMER COLLECTION 2024
               </span>
-              <h1 className="text-5xl md:text-7xl font-bold tracking-[-0.03em] text-[#111111] leading-none">
+              <h1 className="text-6xl md:text-8xl font-bold tracking-[-0.05em] text-[#111111] leading-[0.9]">
                 {product.name}
               </h1>
-              <p className="text-3xl font-bold text-[#111111] tracking-tight">${product.price}.00</p>
+              <p className="text-4xl font-bold text-[#111111] tracking-tighter">${product.price}.00</p>
             </div>
 
             <div className="space-y-10">

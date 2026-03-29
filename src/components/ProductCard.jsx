@@ -17,18 +17,18 @@ const ProductCard = ({ product, onNavigate }) => {
       onClick={() => onNavigate('detail', product.id)}
       whileHover={{ 
         y: -12,
-        scale: 1.02,
+        scale: 1.04,
         transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
       }}
       className="group cursor-pointer space-y-8"
     >
-      <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] bg-[#F5F5F7] shadow-premium-sm group-hover:shadow-premium-lg transition-all duration-700">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] bg-[#F5F5F7] shadow-luxury-sm group-hover:shadow-luxury-lg transition-all duration-700">
         <motion.img 
           src={product.image} 
           alt={product.name} 
           initial={{ scale: 1 }}
           whileHover={{ 
-            scale: 1.12,
+            scale: 1.15,
             filter: "brightness(1.05)",
           }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}

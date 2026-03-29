@@ -14,14 +14,36 @@ const Cart = ({ onNavigate, setShowCheckout }) => {
     <div className="pt-32 pb-64 min-h-screen bg-white">
       <div className="max-w-[1200px] mx-auto px-6">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-24 space-y-4"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.2
+              }
+            }
+          }}
+          className="mb-24 space-y-6"
         >
-          <h1 className="text-[56px] font-bold tracking-[-0.03em] text-[#111111]">Your Selection.</h1>
-          <p className="text-[18px] text-[#111111]/60 font-medium max-w-xl leading-relaxed">
+          <motion.h1 
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0 }
+            }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[56px] md:text-8xl font-bold tracking-[-0.05em] text-[#111111]"
+          >
+            Your Selection.
+          </motion.h1>
+          <motion.p 
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 }
+            }}
+            className="text-lg md:text-xl text-[#111111]/60 font-medium max-w-xl leading-relaxed italic"
+          >
             Review your curated pieces before we prepare them for their journey to your home.
-          </p>
+          </motion.p>
         </motion.div>
 
         {cart.items.length === 0 ? (
